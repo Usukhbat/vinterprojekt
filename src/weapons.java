@@ -1,8 +1,6 @@
 public class weapons {
     final String name;
-    int damage;
-    weapons(String name, int damage){
+    public weapons(String name){
         this.name = name;
-        this.damage = damage;
     }
 }
