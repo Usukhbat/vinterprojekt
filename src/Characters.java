@@ -1,23 +1,25 @@
 import java.util.ArrayList;
-public class characters {
+import java.util.Random;
+public class Characters {
     final String name;
-    int health = 20;
+    int health = 50;
     int strength = 5;
     int endurance = 5;
+    Random random = new Random();
     ArrayList<String> inventory = new ArrayList<>();
-    characters(String name){
+    Characters(String name){
         this.name = name;
     }
     public String getName(){
         return name;
     }
     public int getHealth(){
-        this.health += endurance;
         return health;
     }
-    public void dealDamage(int damage){
-        int pain = damage+this.strength;
-        this.health = (this.health-pain);
+    public void dealDamage(int damage, String name){
+        damage += random.nextInt(10);
+        System.out.println(name+" dealt -"+damage);
+        this.health = (this.health-damage);
     }
     public void levelUp(){
 

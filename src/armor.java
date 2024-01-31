@@ -1,5 +1,6 @@
 public class armor {
-    int defence = 0;
+    String name;
+    int defence;
     public armor(int defence){
         this.defence = defence;
     }

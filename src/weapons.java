@@ -3,4 +3,5 @@ public class weapons {
     public weapons(String name){
         this.name = name;
     }
+
 }
