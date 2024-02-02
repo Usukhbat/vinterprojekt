@@ -4,12 +4,13 @@ import java.util.Random;
 import java.util.Scanner;
 public class Characters {
     final String name;
-    int health = 50;
+    int health;
     int strength = 5;
     ArrayList<String> inventory = new ArrayList<>();
     Random random = new Random();
-    Characters(String name){
+    Characters(String name, int health){
         this.name = name;
+        this.health = health;
         this.inventory.add("empty");
     }
     public String getName(){
@@ -32,7 +33,7 @@ public class Characters {
         }
     }
     public void checkStats(){
-        System.out.println(this.name+"'s stats"+"\nHealth: "+this.health+"\nStrength: "+this.strength);
+        System.out.println("["+this.name+"'s stats]"+"\nHealth: "+this.health+"\nStrength: "+this.strength);
     }
     public void dropLoot(int chance, String plusStrength, String plusHealth){
         this.health = 50;
@@ -54,47 +55,51 @@ public class Characters {
             }
         }
     }
-    public void loss(){
+    public void reset(){
         this.health = 50;
         System.out.println("You died, try again.");
     }
-    public void useItem(){
+    public void useItem(int plusHealth, int plusStrength){
         Scanner scan = new Scanner(System.in);
-        System.out.println("Tip: To use an item type the item slot number. Type 0 to return to the main menu.");
-        int index = scan.nextInt();
-        if (index == 0){
-            return;
-        }
-        index --;
-        if (this.inventory.get(index).equalsIgnoreCase("empty")){
-            System.out.println("Your inventory is empty.");
-            return;
-        }
-        System.out.println("Use, "+this.inventory.get(index)+"?\n(Yes or No)");
-        String action = scan.next();
-        if (action.equalsIgnoreCase("yes")){
-            if (this.inventory.get(index).equalsIgnoreCase("Green Crystal")){
-                int plusHealth = random.nextInt(1,6);
-                this.health += plusHealth;
-                System.out.println("You used: "+this.inventory.get(index)+".\n+"+plusHealth+" Health.\n(Item has been removed from your inventory.)");
-                this.inventory.remove(index);
+        System.out.println("Tip: To use an item type the item slot number. Type '0' to return to the main menu.");
+        try{
+            int index = scan.nextInt();
+            if (index == 0){
+                return;
             }
-            if (this.inventory.get(index).equalsIgnoreCase("Red Crystal")){
-                int plusStrength = random.nextInt(1,6);
-                this.strength += plusStrength;
-                System.out.println("You used: "+this.inventory.get(index)+".\n+"+plusStrength+" Strength.\n(Item has been removed from your inventory.)");
-                this.inventory.remove(index);
+            index --;
+            if (this.inventory.get(index).equalsIgnoreCase("empty")){
+                System.out.println("Your inventory is empty.");
+                return;
             }
+            System.out.println("Use, "+this.inventory.get(index)+"?\n(Yes or No)");
+            String action = scan.next();
+            if (action.equalsIgnoreCase("yes")){
+                if (this.inventory.get(index).equalsIgnoreCase("Green Crystal")){
+                    this.health += plusHealth;
+                    System.out.println("You used: "+this.inventory.get(index)+".\n+"+plusHealth+" Health.\n(Item has been removed from your inventory.)");
+                    this.inventory.remove(index);
+                }
+                if (this.inventory.get(index).equalsIgnoreCase("Red Crystal")){
+                    this.strength += plusStrength;
+                    System.out.println("You used: "+this.inventory.get(index)+".\n+"+plusStrength+" Strength.\n(Item has been removed from your inventory.)");
+                    this.inventory.remove(index);
+                }
+            }
+            else{
+                System.out.println("Action cancelled.");
+            }
+        }catch (Exception e){
+            System.out.println("Wrong input. To use an item type the item slot number or type '0' to return to the main menu.");
         }
-        else{
-            System.out.println("Action cancelled or wrong input");
-        }
-
     }
     public void inventoryReset(){
         boolean check = this.inventory.get(0).isEmpty();
         if (check){
             this.inventory.add("empty");
         }
+    }
+    public void showEquipped(String weapon, String armor){
+        System.out.println("[Equipped]\nWeapon: "+weapon+"\nArmor: "+armor);
     }
 }

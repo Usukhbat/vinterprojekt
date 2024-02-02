@@ -1,10 +1,9 @@
 public class Armor {
     String name;
-    int defence;
-    public Armor(int defence){
-        this.defence = defence;
+    public Armor(String name){
+        this.name = name;
     }
-    public int getDefence(){
-        return defence;
+    public String getName(){
+        return name;
     }
 }

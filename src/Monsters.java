@@ -1,6 +1,8 @@
 public class Monsters extends Characters {
-    int health = 20;
-    public Monsters(String name){
-        super(name);
+    public Monsters(String name, int health){
+        super(name, health);
+    }
+    public void makeSound(){
+        System.out.println("Die, human!");
     }
 }

@@ -1,10 +1,21 @@
+import java.util.Random;
 public class Melee extends Weapons {
-    int damage = 1;
+    String name;
+    int damage;
+    Random random = new Random();
+
     public Melee(String name) {
         super(name);
     }
-    public int getDamage(){
-        return damage;
+
+    public String getName() {
+        return name;
     }
 
+    public int getDamage() {
+        return damage;
+    }
+    public void setDamage(){
+        this.damage = random.nextInt(1,5);
+    }
 }
