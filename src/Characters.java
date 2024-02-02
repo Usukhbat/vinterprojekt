@@ -66,6 +66,10 @@ public class Characters {
             return;
         }
         index --;
+        if (this.inventory.get(index).equalsIgnoreCase("empty")){
+            System.out.println("Your inventory is empty.");
+            return;
+        }
         System.out.println("Use, "+this.inventory.get(index)+"?\n(Yes or No)");
         String action = scan.next();
         if (action.equalsIgnoreCase("yes")){
