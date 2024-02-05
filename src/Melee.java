@@ -1,11 +1,11 @@
 import java.util.Random;
-public class Melee extends Weapons {
+public class Melee {
     String name;
     int damage;
     Random random = new Random();
 
     public Melee(String name) {
-        super(name);
+        this.name = name;
     }
 
     public String getName() {

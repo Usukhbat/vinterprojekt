@@ -32,6 +32,9 @@ public class Characters {
             System.out.println(n+". "+i);
         }
     }
+    public void makeSound(){
+        System.out.println("Die!");
+    }
     public void checkStats(){
         System.out.println("["+this.name+"'s stats]"+"\nHealth: "+this.health+"\nStrength: "+this.strength);
     }
@@ -94,7 +97,7 @@ public class Characters {
         }
     }
     public void inventoryReset(){
-        boolean check = this.inventory.get(0).isEmpty();
+        boolean check = this.inventory.isEmpty();
         if (check){
             this.inventory.add("empty");
         }
